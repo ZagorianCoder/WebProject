@@ -20,7 +20,7 @@ public class ProfessorApplicationSecurityConfig extends WebSecurityConfigurerAda
 		
 		// bcrypt online https://bcrypt-generator.com/
 		
-		// password "john" is externally encrypted to the following
+		// password "password" is externally encrypted to the following
 		UserDetails user1 = User.withUsername("admin")
 			     .password("$2a$12$HexDpMOzeB2.WJbRX9LP.O2JLGazurWK2c25et1ij7J6fYjKSzklm")
 			     .roles("ADMIN")
