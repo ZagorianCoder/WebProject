@@ -37,19 +37,66 @@ public class CourseController {
 	@GetMapping("/list")
 	public String listCourses(Model theModel) {
 		
-		// get employees from db
+		// get courses from db
 		List<Course> theCourses = courseService.findAll();
 		
 		// add to the spring model
 		theModel.addAttribute("courses", theCourses);
 		
-		/* Simple test this is how to get the 
-		 * name of the person logged in to be used for other purposes 
-		 * Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		 * String currentPrincipalName = authentication.getName();
-		 * System.out.println(currentPrincipalName);
-		*/
 		
 		return "courses/list-courses";
 	}
+	
+	@GetMapping("/showFormForAdd")
+	public String showFormForAdd(Model theModel) {
+		
+		// create model attribute to bind form data
+		Course theCourse = new Course();
+		
+		theModel.addAttribute("course", theCourse);
+		
+		return "courses/course-form";
+	}
+
+	@GetMapping("/showFormForUpdate")
+	public String showFormForUpdate(@RequestParam("courseId") int theId,
+									Model theModel) {
+		
+		List<Course> theCourses = (List<Course>) theModel.getAttribute("courses");
+		theCourses.size();
+		
+		// get the course from the service
+		Course theCourse = courseService.findById(theId);
+		
+		// set course as a model attribute to pre-populate the form
+		theModel.addAttribute("course", theCourse);
+		
+		// send over to our form
+		return "courses/course-form";			
+	}
+	
+	
+	@PostMapping("/save")
+	public String saveCourse(@ModelAttribute("course") Course theCourse, Model theModel) {
+		
+		// save the course
+		courseService.save(theCourse);
+		
+		// use a redirect to prevent duplicate submissions
+		return "redirect:/courses/list";
+	}
+	
+	
+	@GetMapping("/delete")
+	public String delete(@RequestParam("courseId") int theId) {
+		
+		// delete the course
+		courseService.deleteById(theId);
+		
+		// redirect to /courses/list
+		return "redirect:/courses/list";
+		
+	}
+	
+	
 }

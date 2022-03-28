@@ -18,7 +18,7 @@ public class ProfessorApplicationSecurityConfig extends WebSecurityConfigurerAda
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
 		
-		// bcrypt online https://bcrypt-generator.com/
+		
 		
 		// password "password" is externally encrypted to the following
 		UserDetails user1 = User.withUsername("admin")
@@ -36,26 +36,5 @@ public class ProfessorApplicationSecurityConfig extends WebSecurityConfigurerAda
 	    return new BCryptPasswordEncoder();
 	}
 
-	/* ZAS keep it simple - No need for custom login page
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests()
-			.antMatchers("/employees/showForm*").hasAnyRole("MANAGER", "ADMIN")
-			.antMatchers("/employees/save*").hasAnyRole("MANAGER", "ADMIN")
-			.antMatchers("/employees/delete").hasRole("ADMIN")
-			.antMatchers("/employees/**").hasRole("EMPLOYEE")
-			.antMatchers("/resources/**").permitAll()
-			.and()
-			.formLogin()
-				.loginPage("/showMyLoginPage")
-				.loginProcessingUrl("/authenticateTheUser")
-				.permitAll()
-			.and()
-			.logout().permitAll()
-			.and()
-			.exceptionHandling().accessDeniedPage("/access-denied");
-		
-	}
-	*/
 }

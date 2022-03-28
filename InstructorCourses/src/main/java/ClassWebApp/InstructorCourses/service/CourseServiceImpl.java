@@ -32,7 +32,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	@Transactional
 	public List<Course> findAll() {
-		// TODO Auto-generated method stub
+		
 		return courseRepository.findAll();
 	}
 
