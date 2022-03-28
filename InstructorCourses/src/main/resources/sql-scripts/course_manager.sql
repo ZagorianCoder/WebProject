@@ -7,9 +7,11 @@ DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `syllabus` double DEFAULT 0,
-  `year` double DEFAULT 0,
+  `syllabus` varchar(45) DEFAULT 0,
+  `year` int DEFAULT 0,
   `semester` int DEFAULT NULL,
   PRIMARY KEY (`id`)
   
   );
+INSERT INTO `course` VALUES
+	(1,"diakrita","1st lesson",2021,6);
