@@ -13,5 +13,3 @@ CREATE TABLE `course` (
   PRIMARY KEY (`id`)
   
   );
-INSERT INTO `course` VALUES
-	(1,"diakrita","1st lesson",2021,6);

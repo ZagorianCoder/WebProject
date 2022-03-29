@@ -9,5 +9,9 @@ import ClassWebApp.InstructorCourses.entity.Course;
 
 public interface DAORepository extends JpaRepository<Course,Integer> {
 	
+	public List<Course> findAll();
+	
 	public Course findById(int theId);
+	
+	
 }

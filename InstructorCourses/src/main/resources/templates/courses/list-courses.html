@@ -30,6 +30,7 @@
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">
 			<tr>
+				<th>ID</th>
 				<th>Name</th>
 				<th>Syllabus</th>
 				<th>Year</th>
@@ -39,7 +40,7 @@
 		
 		<tbody>
 			<tr th:each="tempCourse : ${courses}">
-			
+				<td th:text="${tempCourse.id}" />
 				<td th:text="${tempCourse.name}" />	
 				<td th:text="${tempCourse.syllabus}" />	
 				<td th:text="${tempCourse.year}" />
