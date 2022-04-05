@@ -7,4 +7,4 @@ ___
 
 ### PROJECT PROGRESSION
 
-- [x] US1 
+- [x] US1: **To login to the application with my user name and password.**
