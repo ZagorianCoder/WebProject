@@ -52,13 +52,20 @@
 					   class="btn btn-info btn-sm">
 						Update
 					</a>
-					
-					<!-- Add "delete" button/link -->					
+
+					<!-- Add "delete" button/link -->
 					<a th:href="@{/courses/delete(courseId=${tempCourse.id})}"
 					   class="btn btn-danger btn-sm"
 					   onclick="if (!(confirm('Are you sure you want to delete this course?'))) return false">
 						Delete
 					</a>
+
+					<!-- Add "students" button/link -->
+					<a th:href="@{/students/list}"
+					   class="btn btn-info btn-sm">
+						Students
+					</a>
+
 					
 				</td>
 				

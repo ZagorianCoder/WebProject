@@ -68,6 +68,23 @@ public class CourseController {
 		// send over to our form
 		return "courses/course-form";			
 	}
+
+	@GetMapping("/showFormForStudents")
+	public String showFormForStudents(@RequestParam("courseId") int theId,
+									Model theModel) {
+
+		List<Course> theCourses = (List<Course>) theModel.getAttribute("courses");
+		theCourses.size();
+
+		// get the course from the service
+		Course theCourse = courseService.findById(theId);
+
+		// set course as a model attribute to pre-populate the form
+		theModel.addAttribute("course", theCourse);
+
+		// send over to our form
+		return "courses/list-students";
+	}
 	
 	
 	@PostMapping("/save")
