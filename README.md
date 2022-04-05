@@ -6,4 +6,4 @@ ___
 ---
 ## Project Progression:
 ---
--[x] US1
+- [ X ] Task 1
