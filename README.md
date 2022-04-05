@@ -19,7 +19,7 @@ ___
 - [ ] US10: **To register the grades of the student in the final exam and the project of the course.**
 - [ ] US11: **To calculate the overall grades of the students that enrolled in a particular course with respected to a weighted average.**
 - [ ] US12: __To calculate descriptive statistics about the students grades in a particular course, including:__ <br/> 
-    - [ ] (** min/max **)
+    - [ ] ( ** min/max ** )
     - [ ] ** mean **
     - [ ] ** standard deviation **
     - [ ] ** variance **
