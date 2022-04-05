@@ -6,4 +6,4 @@ ___
 ---
 ## Project Progression:
 ---
-*[x] US1: **To login to the application with my user name and password.**
+-[x] US1
