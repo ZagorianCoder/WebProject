@@ -18,5 +18,5 @@ ___
 - [ ] US9: **To update students' information**
 - [ ] US10: **To register the grades of the student in the final exam and the project of the course.**
 - [ ] US11: **To calculate the overall grades of the students that enrolled in a particular course with respected to a weighted average.**
-- [ ] US12: ** To calculate descriptive statistics about the students grades in :** <br/> 
+- [ ] US12: __To calculate descriptive statistics about the students grades in :__ <br/> 
 **a particular course, including min, max, mean, standard deviation, variance, percentiles, skewness, kurtosis, median.** 
