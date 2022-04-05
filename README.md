@@ -5,14 +5,14 @@ ___
 >* a Web Application that allows an instructor to manage his **courses** and **students** info. 
 ---
 
-### Solar System Exploration, 1950s – 1960s
+### PROJECT PROGRESSION
 
-- [ ] Mercury
-- [x] Venus
-- [x] Earth (Orbit/Moon)
-- [x] Mars
-- [ ] Jupiter
-- [ ] Saturn
-- [ ] Uranus
-- [ ] Neptune
-- [ ] Comet Haley
+- [ ] 
+- [x] 
+- [x] 
+- [x] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
