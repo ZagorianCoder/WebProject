@@ -61,7 +61,7 @@
 					</a>
 
 					<!-- Add "students" button/link -->
-					<a th:href="@{/students/list}"
+					<a th:href="@{/courses/showFormForStudents(courseId=${tempCourse.id})}"
 					   class="btn btn-info btn-sm">
 						Students
 					</a>
