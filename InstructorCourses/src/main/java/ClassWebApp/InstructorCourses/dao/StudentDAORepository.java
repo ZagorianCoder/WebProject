@@ -11,6 +11,8 @@ public interface StudentDAORepository extends JpaRepository<Student,Integer> {
 	
 	public List<Student> findAll();
 	
+	public List<Student> findByCourseId(int theId);
+	
 	public Student findById(int theId);
 	
 	

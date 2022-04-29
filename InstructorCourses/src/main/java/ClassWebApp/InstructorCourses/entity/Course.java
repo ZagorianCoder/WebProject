@@ -38,7 +38,7 @@ public class Course {
 	private int semester;
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="course_id")
+	@JoinColumn(name="course_id") 
 	private List<Student> students;
 	
 	public Course() {

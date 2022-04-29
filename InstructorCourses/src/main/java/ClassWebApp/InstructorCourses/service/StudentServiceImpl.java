@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ClassWebApp.InstructorCourses.entity.Course;
 import ClassWebApp.InstructorCourses.entity.Student;
 import ClassWebApp.InstructorCourses.dao.StudentDAORepository;
 import ClassWebApp.InstructorCourses.service.StudentService;
@@ -36,19 +37,14 @@ public class StudentServiceImpl implements StudentService {
 		
 		return studentRepository.findAll();
 	}
+	
 
 	@Override
 	@Transactional
-	public Student findById(int theId) {
-		Student result = studentRepository.findById(theId);
+	public List<Student> findRegistrationsByCourseId (int theId) {
+		List<Student> theStudent = studentRepository.findByCourseId(theId);
+		return theStudent;
 		
-		if (result != null ) {
-			return result;
-		}
-		else {
-			// we didn't find the employee
-			throw new RuntimeException("Did not find student id - " + theId);
-		}
 	}
 
 	@Override
@@ -63,6 +59,20 @@ public class StudentServiceImpl implements StudentService {
 	public void deleteById(int theId) {
 		studentRepository.deleteById(theId);
 		
+	}
+
+	@Override
+	@Transactional
+	public Student findById(int theId) {
+		Student result = studentRepository.findById(theId);
+		
+		if (result != null ) {
+			return result;
+		}
+		else {
+			// we didn't find the employee
+			throw new RuntimeException("Did not find course id - " + theId);
+		}
 	}
 	
 }

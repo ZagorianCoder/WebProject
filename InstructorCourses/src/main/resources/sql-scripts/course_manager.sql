@@ -1,8 +1,9 @@
 CREATE DATABASE  IF NOT EXISTS `course_manager`;
 USE `course_manager`;
 
-DROP TABLE IF EXISTS `course`;
 DROP TABLE IF EXISTS `student`;
+DROP TABLE IF EXISTS `course`;
+
 
 CREATE TABLE `course` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -17,7 +18,7 @@ CREATE TABLE `course` (
 CREATE TABLE `student` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `yearOfRegistration` int DEFAULT NULL,
+  `year_of_registration` int DEFAULT NULL,
   `semester` int DEFAULT 0,
   `course_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),

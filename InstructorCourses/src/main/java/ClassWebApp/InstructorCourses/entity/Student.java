@@ -20,7 +20,7 @@ public class Student {
 		@Column(name="name")
 		private String name;
 		
-		@Column(name="yearofregistration")
+		@Column(name="year_of_registration")
 		private String yearOfRegistration;
 		
 		@Column(name="semester")
@@ -30,10 +30,10 @@ public class Student {
 			super();
 		}
 		
-		public Student(String name,String syllabus,int year,int semester) {
+		public Student(String name,String yearOfRegistration,int year,int semester) {
 			super();
 			this.name=name;
-			this.yearOfRegistration=syllabus;
+			this.yearOfRegistration=yearOfRegistration;
 			this.semester=semester;
 		}
 
@@ -72,7 +72,7 @@ public class Student {
 
 		@Override
 		public String toString() {
-			return "Student [id=" + id + ", name=" + name + ", year of registration=" + yearOfRegistration +", semester=" + semester +"]";
+			return "Student [id=" + id + ", name=" + name + ", yearofregistration=" + yearOfRegistration +", semester=" + semester +"]";
 		}
 	}
 
