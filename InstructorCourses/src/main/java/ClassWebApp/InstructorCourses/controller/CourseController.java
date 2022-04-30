@@ -152,14 +152,13 @@ public class CourseController {
 		public String showFormForUpdateStudents(@RequestParam("studentId") int theId,
 										Model theModel) {
 			
-			List<Student> theStudents = (List<Student>) theModel.getAttribute("student");
-			theStudents.size();
+			;
 			
 			// get the course from the service
 			Student theStudent = studentService.findById(theId);
 			
 			// set course as a model attribute to pre-populate the form
-			theModel.addAttribute("student", theStudent);
+			theModel.addAttribute("studentobj", theStudent);
 			
 			// send over to our form
 			return "student-form";			
@@ -169,12 +168,13 @@ public class CourseController {
 		@PostMapping("/saveStudent")
 		public String saveStudent(@ModelAttribute("studentobj") Student theStudent, Model theModel) {
 			
-			
+			this.getCourse().addStudentRegistrations(theStudent);
+			theStudent.setCourse(this.getCourse());
 			// save the course
 			studentService.save(theStudent);
 			
 			// use a redirect to prevent duplicate submissions
-			return "redirect:/studentList";
+			return "redirect:javascript:history.go(-1)";      //       TODO how to go back to students list
 		}
 		
 		
@@ -185,7 +185,7 @@ public class CourseController {
 			studentService.deleteById(theId);
 			
 			// redirect to /courses/list
-			return "redirect:/studentList";
+			return "Confirmation";     //       TODO how to go back to students list 
 			
 		}
 
