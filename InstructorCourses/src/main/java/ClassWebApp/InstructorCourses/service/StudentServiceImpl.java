@@ -11,6 +11,7 @@ import ClassWebApp.InstructorCourses.entity.Course;
 import ClassWebApp.InstructorCourses.entity.Student;
 import ClassWebApp.InstructorCourses.dao.StudentDAORepository;
 import ClassWebApp.InstructorCourses.service.StudentService;
+import ClassWebApp.InstructorCourses.dao.DAORepository;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -19,13 +20,17 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	private StudentDAORepository studentRepository;
 	
+	@Autowired
+	private DAORepository courseRepository;
+	
 	public StudentServiceImpl() {
 		super();
 	}
 
 	@Autowired
-	public StudentServiceImpl(StudentDAORepository theStudentRepository) {
+	public StudentServiceImpl(StudentDAORepository theStudentRepository,DAORepository theDAORepository) {
 		studentRepository = theStudentRepository;
+		courseRepository = theDAORepository;
 	}
 	
 	
@@ -41,8 +46,11 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	@Transactional
-	public List<Student> findRegistrationsByCourseId (int theId) {
-		List<Student> theStudent = studentRepository.findByCourseId(theId);
+	public List<Student> findRegistrationsByCourseId (int courseid) {
+		if (!courseRepository.existsById(courseid)) {
+		      throw new RuntimeException("Not found Tutorial with id = " + courseid);
+		}
+		List<Student> theStudent = studentRepository.findRegistrationsByCourseId(courseid);
 		return theStudent;
 		
 	}
@@ -73,6 +81,24 @@ public class StudentServiceImpl implements StudentService {
 			// we didn't find the employee
 			throw new RuntimeException("Did not find course id - " + theId);
 		}
+	}
+	
+	
+	
+	public StudentDAORepository getStudentRepository() {
+		return studentRepository;
+	}
+
+	public void setStudentRepository(StudentDAORepository studentRepository) {
+		this.studentRepository = studentRepository;
+	}
+
+	public DAORepository getCourseRepository() {
+		return courseRepository;
+	}
+
+	public void setCourseRepository(DAORepository courseRepository) {
+		courseRepository = courseRepository;
 	}
 	
 }

@@ -18,10 +18,11 @@ CREATE TABLE `course` (
 CREATE TABLE `student` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,
-  `year_of_registration` int DEFAULT NULL,
+  `yearofreg` VARCHAR(10) DEFAULT NULL,
   `semester` int DEFAULT 0,
   `course_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `fk_course` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) 
-				ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (course_id) REFERENCES course (id)
+		ON DELETE CASCADE
+        ON UPDATE CASCADE
 );

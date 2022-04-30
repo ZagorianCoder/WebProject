@@ -1,11 +1,19 @@
 package ClassWebApp.InstructorCourses.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -13,30 +21,45 @@ import javax.persistence.Table;
 public class Student {
 	
 		@Id
-		@GeneratedValue(strategy=GenerationType.IDENTITY)
+		@GeneratedValue(strategy=GenerationType.AUTO)
 		@Column(name="id")
 		private int id;
 		
 		@Column(name="name")
 		private String name;
 		
-		@Column(name="year_of_registration")
+		@Column(name="yearofreg")
 		private String yearOfRegistration;
 		
 		@Column(name="semester")
 		private int semester;
 		
+		@JsonIgnore
+		@ManyToOne(cascade = CascadeType.MERGE)
+	    @JoinColumn(name = "course_id", referencedColumnName = "id")
+		@OnDelete(action = OnDeleteAction.CASCADE)
+		private Course course;
+		
 		public Student() {
 			super();
 		}
 		
-		public Student(String name,String yearOfRegistration,int year,int semester) {
+		public Student(int id,String name,String yearOfRegistration,int year,int semester,Course course) {
 			super();
+			this.id = id;
 			this.name=name;
 			this.yearOfRegistration=yearOfRegistration;
 			this.semester=semester;
+			this.course = course;
 		}
 
+		public Course getCourse() {
+			return course;
+		}
+
+		public void setCourse(Course course) {
+			this.course = course;
+		}
 		
 		public int getId() {
 			return id;
@@ -72,7 +95,7 @@ public class Student {
 
 		@Override
 		public String toString() {
-			return "Student [id=" + id + ", name=" + name + ", yearofregistration=" + yearOfRegistration +", semester=" + semester +"]";
+			return "Student [id=" + id + ", name=" + name + ", yearofreg=" + yearOfRegistration +", semester=" + semester +"]";
 		}
 	}
 

@@ -16,12 +16,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="course")
 public class Course {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	private int id;
 	
@@ -37,13 +39,13 @@ public class Course {
 	@Column(name="semester")
 	private int semester;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="course_id") 
-	private List<Student> students;
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="course")
+	private List<Student> students = new ArrayList<Student>();
 	
 	public Course() {
 		super();
-		this.students = new ArrayList<Student>();
+		//this.students = new ArrayList<Student>();
 	}
 	
 	public Course(String name,String syllabus,int year,int semester) {
@@ -52,7 +54,7 @@ public class Course {
 		this.syllabus=syllabus;
 		this.year=year;
 		this.semester=semester;
-		this.students = new ArrayList<Student>();
+		//this.students = new ArrayList<Student>();
 	}
 
 	public int getId() {
@@ -95,20 +97,20 @@ public class Course {
 		this.semester = semester;
 	}
 	//for user story 6 to add students that are enrolled to the course
-	public List<Student> getStudent() {
+	public List<Student> getStudents() {
 		return students;
 	}
 
-	public void setStudent(List<Student> students) {
+	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
 	
-	public void addStudent(Student student) {
-		students.add(student);
-	}
+//	public void addStudent(Student student) {
+//		students.add(student);
+//	}
 	/////////////////////////////////////////////////////////////////
 	@Override
 	public String toString() {
-		return "Course [id=" + id + ", name=" + name + ", syllabus=" + syllabus + ", year=" + year +", semester=" + semester +", student=" + students + "]";
+		return "Course [id=" + id + ", name=" + name + ", syllabus=" + syllabus + ", year=" + year +", semester=" + semester + "]";
 	}
 }

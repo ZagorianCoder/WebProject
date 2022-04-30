@@ -64,4 +64,12 @@ public class CourseServiceImpl implements CourseService {
 		
 	}
 	
+	public DAORepository getCourseRepository() {
+		return courseRepository;
+	}
+
+	public void setCourseRepository(DAORepository courseRepository) {
+		this.courseRepository = courseRepository;
+	}
+	
 }

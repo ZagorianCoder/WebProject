@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import ClassWebApp.InstructorCourses.entity.Course;
 import ClassWebApp.InstructorCourses.service.CourseService;
@@ -29,11 +30,19 @@ public class CourseController {
 	
 	@Autowired
 	private CourseService courseService;
-	
+	@Autowired
 	private StudentService studentService;
 	
-	public CourseController(CourseService theCourseService) {
+	private Course course;
+	
+	public CourseController() {
+		super();
+	}
+	
+	public CourseController(CourseService theCourseService,StudentService theStudentService,Course course) {
 		courseService = theCourseService;
+		studentService = theStudentService;
+		this.course = course;
 	}
 	
 	// add mapping for "/list"
@@ -112,18 +121,20 @@ public class CourseController {
 				Model theModel) {
 			
 			Course theCourse = courseService.findById(theId);
-			
+			this.setCourse(theCourse);
 			
 			// get courses from db
 			List<Student> theStudentRgst = studentService.findRegistrationsByCourseId(theId);
 			
 			// add to the spring model
-			theModel.addAttribute("student", theStudentRgst);
-			theModel.addAttribute("courses", theCourse);
+			theModel.addAttribute("studentobj", theStudentRgst);
+			theModel.addAttribute("courses2", theCourse);
 			
 			return "list-students";
 		}
 		
+		
+
 		
 
 		@GetMapping("/showFormForAddStudents")
@@ -132,7 +143,7 @@ public class CourseController {
 			// create model attribute to bind form data
 			Student theStudent = new Student();
 			
-			theModel.addAttribute("student", theStudent);
+			theModel.addAttribute("studentobj", theStudent);
 			
 			return "student-form";
 		}
@@ -156,13 +167,14 @@ public class CourseController {
 		
 		
 		@PostMapping("/saveStudent")
-		public String saveStudent(@ModelAttribute("student") Student theStudent, Model theModel) {
+		public String saveStudent(@ModelAttribute("studentobj") Student theStudent, Model theModel) {
+			
 			
 			// save the course
 			studentService.save(theStudent);
 			
 			// use a redirect to prevent duplicate submissions
-			return "redirect:/students/studentList";
+			return "redirect:/studentList";
 		}
 		
 		
@@ -173,10 +185,32 @@ public class CourseController {
 			studentService.deleteById(theId);
 			
 			// redirect to /courses/list
-			return "redirect:/students/studentList";
+			return "redirect:/studentList";
 			
 		}
-		
+
+		public CourseService getCourseService() {
+			return courseService;
+		}
+
+		public void setCourseService(CourseService courseService) {
+			this.courseService = courseService;
+		}
+
+		public StudentService getStudentService() {
+			return studentService;
+		}
+
+		public void setStudentService(StudentService studentService) {
+			this.studentService = studentService;
+		}
+		public Course getCourse() {
+			return course;
+		}
+
+		public void setCourse(Course course) {
+			this.course = course;
+		}
 		
 	}
 
