@@ -78,7 +78,7 @@ public class StudentServiceImpl implements StudentService {
 			return result;
 		}
 		else {
-			// we didn't find the employee
+			// we didn't find the course
 			throw new RuntimeException("Did not find course id - " + theId);
 		}
 	}

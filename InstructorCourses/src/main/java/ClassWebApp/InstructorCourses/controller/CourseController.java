@@ -123,10 +123,10 @@ public class CourseController {
 			Course theCourse = courseService.findById(theId);
 			this.setCourse(theCourse);
 			
-			// get courses from db
+			
 			List<Student> theStudentRgst = studentService.findRegistrationsByCourseId(theId);
 			
-			// add to the spring model
+			
 			theModel.addAttribute("studentobj", theStudentRgst);
 			theModel.addAttribute("courses2", theCourse);
 			
@@ -168,13 +168,14 @@ public class CourseController {
 		@PostMapping("/saveStudent")
 		public String saveStudent(@ModelAttribute("studentobj") Student theStudent, Model theModel) {
 			
-			this.getCourse().addStudentRegistrations(theStudent);
-			theStudent.setCourse(this.getCourse());
+			this.getCourse().addStudent(theStudent);  //from Course entity
+			theStudent.setCourse(this.getCourse());	  //giving the course_id so that the student can be displayed at the specific course
+			
 			// save the course
 			studentService.save(theStudent);
 			
 			// use a redirect to prevent duplicate submissions
-			return "redirect:javascript:history.go(-1)";      //       TODO how to go back to students list
+			return "Confirmation1";      //       TODO how to go back to students list
 		}
 		
 		
@@ -211,6 +212,7 @@ public class CourseController {
 		public void setCourse(Course course) {
 			this.course = course;
 		}
+		
 		
 	}
 

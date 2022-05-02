@@ -61,15 +61,11 @@ public class Course {
 		return id;
 	}
 	///////////////////
-	public void addStudentRegistrations(Student theStudent){
-		   students.add(theStudent);
-		   theStudent.setCourse(this);
-		}
+//	public void addStudentRegistrations(Student theStudent){
+//		   students.add(theStudent);
+//		   theStudent.setCourse(this);
+//		}
 	
-	public void removeStudentRegistrations(Student theStudent){
-		students.remove(theStudent);
-		theStudent.setCourse(null);
-	}
 ////////////////////////////////
 	public void setId(int id) {
 		this.id = id;
@@ -115,9 +111,9 @@ public class Course {
 		this.students = students;
 	}
 	
-//	public void addStudent(Student student) {
-//		students.add(student);
-//	}
+	public void addStudent(Student student) {
+		students.add(student);
+	}
 	/////////////////////////////////////////////////////////////////
 	@Override
 	public String toString() {
