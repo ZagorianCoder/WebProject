@@ -39,34 +39,52 @@ public class Course {
 	@Column(name="semester")
 	private int semester;
 	
+	@Column(name = "project_percentage")
+	private int projectpercentage;
+	
+	@Column(name = "exam_percentage")
+	private int exampercentage;
+	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="course")
 	private List<Student> students = new ArrayList<Student>();
 	
 	public Course() {
 		super();
-		//this.students = new ArrayList<Student>();
+		
 	}
 	
-	public Course(String name,String syllabus,int year,int semester) {
+	public Course(String name,String syllabus,int year,int semester,int projectpercentage,int exampercentage) {
 		super();
 		this.name=name;
 		this.syllabus=syllabus;
 		this.year=year;
 		this.semester=semester;
-		//this.students = new ArrayList<Student>();
+		this.projectpercentage = projectpercentage;
+		this.exampercentage = exampercentage;
+		
+	}
+
+	public int getProjectpercentage() {
+		return projectpercentage;
+	}
+
+	public void setProjectpercentage(int projectpercentage) {
+		this.projectpercentage = projectpercentage;
+	}
+
+	public int getExampercentage() {
+		return exampercentage;
+	}
+
+	public void setExampercentage(int exampercentage) {
+		this.exampercentage = exampercentage;
 	}
 
 	public int getId() {
 		return id;
 	}
-	///////////////////
-//	public void addStudentRegistrations(Student theStudent){
-//		   students.add(theStudent);
-//		   theStudent.setCourse(this);
-//		}
-	
-////////////////////////////////
+
 	public void setId(int id) {
 		this.id = id;
 	}

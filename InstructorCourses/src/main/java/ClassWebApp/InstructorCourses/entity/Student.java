@@ -28,11 +28,20 @@ public class Student {
 		@Column(name="name")
 		private String name;
 		
-		@Column(name="yearofreg")
+		@Column(name="year_of_reg")
 		private String yearOfRegistration;
 		
 		@Column(name="semester")
 		private int semester;
+		
+		@Column(name = "project_grade")
+		private double projectgrade;
+		
+		@Column(name = "exam_grade")
+		private double examgrade;
+		
+		@Column(name = "final_grade")
+		private double finalgrade;
 		
 		@JsonIgnore
 		@ManyToOne(cascade = CascadeType.MERGE)
@@ -44,13 +53,40 @@ public class Student {
 			super();
 		}
 		
-		public Student(int id,String name,String yearOfRegistration,int year,int semester,Course course) {
+		public Student(int id,String name,String yearOfRegistration,int year,int semester,Course course,double projectgrade,double examgrade,double finalgrade) {
 			super();
 			this.id = id;
 			this.name=name;
 			this.yearOfRegistration=yearOfRegistration;
 			this.semester=semester;
 			this.course = course;
+			this.projectgrade = projectgrade;
+			this.examgrade = examgrade;
+			this.finalgrade = finalgrade;
+		}
+
+		public double getFinalgrade() {
+			return finalgrade;
+		}
+
+		public void setFinalgrade(double finalgrade) {
+			this.finalgrade = finalgrade;
+		}
+
+		public double getProjectgrade() {
+			return projectgrade;
+		}
+
+		public void setProjectgrade(double projectgrade) {
+			this.projectgrade = projectgrade;
+		}
+
+		public double getExamgrade() {
+			return examgrade;
+		}
+
+		public void setExamgrade(double examgrade) {
+			this.examgrade = examgrade;
 		}
 
 		public Course getCourse() {
@@ -97,6 +133,9 @@ public class Student {
 		public String toString() {
 			return "Student [id=" + id + ", name=" + name + ", yearofreg=" + yearOfRegistration +", semester=" + semester +"]";
 		}
+
+		
+		
 	}
 
 

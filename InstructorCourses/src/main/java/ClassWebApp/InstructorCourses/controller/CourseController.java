@@ -1,5 +1,6 @@
 package ClassWebApp.InstructorCourses.controller;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import java.util.logging.Logger;
@@ -166,16 +167,28 @@ public class CourseController {
 		
 		
 		@PostMapping("/saveStudent")
-		public String saveStudent(@ModelAttribute("studentobj") Student theStudent, Model theModel) {
+		public String saveStudent(@ModelAttribute("studentobj") Student obj, Model theModel) {
 			
-			this.getCourse().addStudent(theStudent);  //from Course entity
-			theStudent.setCourse(this.getCourse());	  //giving the course_id so that the student can be displayed at the specific course
+			this.getCourse().addStudent(obj);  //from Course entity
+			obj.setCourse(this.getCourse());   //giving the course_id so that the student can be displayed at the specific course
 			
-			// save the course
-			studentService.save(theStudent);
+			//For final grading calculation
+			double project = obj.getProjectgrade();
+			double projectper = this.getCourse().getProjectpercentage();
+			double exam = obj.getExamgrade();
+			double examper =this.getCourse().getExampercentage();
 			
-			// use a redirect to prevent duplicate submissions
-			return "Confirmation1";      //       TODO how to go back to students list
+			double finalgr = (projectper*project/100)+ (examper*exam/100);
+			
+			obj.setProjectgrade((project));
+			obj.setExamgrade((exam));
+			obj.setFinalgrade(finalgr);
+			
+			obj.setCourse(this.getCourse());
+			studentService.save(obj);
+			
+			
+			return "Confirmation1";      
 		}
 		
 		
@@ -186,9 +199,10 @@ public class CourseController {
 			studentService.deleteById(theId);
 			
 			// redirect to /courses/list
-			return "Confirmation";     //       TODO how to go back to students list 
+			return "Confirmation";      
 			
 		}
+		
 
 		public CourseService getCourseService() {
 			return courseService;

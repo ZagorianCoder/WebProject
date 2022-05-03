@@ -35,6 +35,8 @@
 				<th>Syllabus</th>
 				<th>Year</th>
 				<th>Semester</th>
+				<th>Project Percentage</th>
+				<th>Exam Percentage</th>
 			</tr>
 		</thead>
 		
@@ -44,7 +46,9 @@
 				<td th:text="${tempCourse.name}" />	
 				<td th:text="${tempCourse.syllabus}" />	
 				<td th:text="${tempCourse.year}" />
-				<td th:text="${tempCourse.semester}" />		
+				<td th:text="${tempCourse.semester}" />
+				<td th:text="${tempCourse.projectpercentage}" />
+				<td th:text="${tempCourse.exampercentage}" />		
 				
 				<td>
 					<!-- Add "update" button/link -->

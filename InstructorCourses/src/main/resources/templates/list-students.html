@@ -34,6 +34,10 @@
 				<th>Name</th>
 				<th>Year Of Registration</th>
 				<th>Semester</th>
+				<th>Project Grade (/10)</th>
+				<th>Exam Grade (/10)</th>
+				<th>Final Grade (/10)</th>
+			
 			</tr>
 		</thead>
 		
@@ -42,7 +46,10 @@
 				<td th:text="${tempStudent.id}" />
 				<td th:text="${tempStudent.name}" />	
 				<td th:text="${tempStudent.yearOfRegistration}" />	
-				<td th:text="${tempStudent.semester}" />		
+				<td th:text="${tempStudent.semester}" />
+				<td th:text="${tempStudent.projectgrade}" />
+				<td th:text="${tempStudent.examgrade}" />
+				<td th:text="${tempStudent.finalgrade}" />			
 				
 				<td>
 					<!-- Add "update" button/link -->
