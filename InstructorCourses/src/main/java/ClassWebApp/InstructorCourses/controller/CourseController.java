@@ -203,6 +203,19 @@ public class CourseController {
 			
 		}
 		
+		@GetMapping("/grades")
+		public String listGrades(@RequestParam("courseId") int theId,Model theModel) {
+			
+			// get courses from db
+			List<Student> theGrades = studentService.findRegistrationsByCourseId(theId);
+			
+			// add to the spring model
+			theModel.addAttribute("gradeobj", theGrades);
+			
+			
+			return "Grades-list";
+		}
+		
 
 		public CourseService getCourseService() {
 			return courseService;

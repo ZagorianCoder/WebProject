@@ -65,8 +65,13 @@
 					</a>
 					<a th:href="@{studentList(courseId=${tempCourse.id})}"
 					   class="btn btn-info btn-sm">
-						Information
+						Student Information
 					</a>
+					<a th:href="@{/courses/grades(courseId=${tempCourse.id})}"
+					   class="btn btn-info btn-sm">
+						All Grades
+					</a>
+					
 					
 				</td>
 				
