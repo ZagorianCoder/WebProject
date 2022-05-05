@@ -1,10 +1,12 @@
 package ClassWebApp.InstructorCourses.controller;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.logging.Logger;
 
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -195,25 +197,60 @@ public class CourseController {
 		@GetMapping("/deleteStudent")
 		public String deleteStudent(@RequestParam("studentId") int theId) {
 			
-			// delete the course
+			
 			studentService.deleteById(theId);
 			
-			// redirect to /courses/list
+			
 			return "Confirmation";      
 			
 		}
 		
 		@GetMapping("/grades")
-		public String listGrades(@RequestParam("courseId") int theId,Model theModel) {
+		public String listGrades(@ModelAttribute("gradeobj") Student obj,@RequestParam("courseId") int theId,Model theModel) {
 			
-			// get courses from db
+			
 			List<Student> theGrades = studentService.findRegistrationsByCourseId(theId);
 			
-			// add to the spring model
+		
 			theModel.addAttribute("gradeobj", theGrades);
 			
 			
 			return "Grades-list";
+		}
+		
+		
+	    
+		
+		@GetMapping("/stats")
+		public String listStats(@RequestParam("courseId") int theId,Model theModel) {
+			DescriptiveStatistics stats = new DescriptiveStatistics();
+			
+			List<Student> theGrades = studentService.findRegistrationsByCourseId(theId);
+			double mean = studentService.mean(theGrades);
+			double min =studentService.min(theGrades);
+			double max =studentService.max(theGrades);
+			double median =studentService.median(theGrades);
+			double standardDeviation =studentService.standardDeviation(theGrades);
+			double variance =studentService.variance(theGrades);
+			double percentiles =studentService.percentiles(theGrades);
+			double skewness =studentService.skewness(theGrades);
+			double kurtosis =studentService.kurtosis(theGrades);
+		
+			
+				
+		
+			theModel.addAttribute("mean", mean);
+			theModel.addAttribute("min", min);
+			theModel.addAttribute("max", max);
+			theModel.addAttribute("median", median);
+			theModel.addAttribute("standardDeviation", standardDeviation);
+			theModel.addAttribute("variance", variance);
+			theModel.addAttribute("percentiles", percentiles);
+			theModel.addAttribute("skewness", skewness);
+			theModel.addAttribute("kurtosis", kurtosis);
+		
+		
+			return "statistics";
 		}
 		
 

@@ -1,5 +1,8 @@
 package ClassWebApp.InstructorCourses.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -128,11 +132,14 @@ public class Student {
 		public void setSemester(int semester) {
 			this.semester = semester;
 		}
+		
 
 		@Override
 		public String toString() {
 			return "Student [id=" + id + ", name=" + name + ", yearofreg=" + yearOfRegistration +", semester=" + semester +"]";
 		}
+
+		
 
 		
 		
