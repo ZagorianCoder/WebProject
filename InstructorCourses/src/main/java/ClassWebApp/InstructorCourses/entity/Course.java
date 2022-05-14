@@ -54,7 +54,12 @@ public class Course {
 		
 	}
 	
-	public Course(String name,String syllabus,int year,int semester,int projectpercentage,int exampercentage) {
+	public Course(String name,
+				  String syllabus,
+				  int year,
+				  int semester,
+				  int projectpercentage,
+				  int exampercentage) {
 		super();
 		this.name=name;
 		this.syllabus=syllabus;
